@@ -1,6 +1,6 @@
 const redux = require("redux");
 
-const counterReducer = (state, action) => {
+const counterReducer = (state = { counter: 0 }, action) => {
   return {
     counter: state.counter + 1,
   };
@@ -13,6 +13,6 @@ const counterSubscriber = () => {
   console.log(latestState);
 };
 
-for (let x = 0; x < 10; x++) {
-  counterSubscriber();
-}
+store.subscribe(counterSubscriber);
+
+store.dispatch({ type: "increment" });
